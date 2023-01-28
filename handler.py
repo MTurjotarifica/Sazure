@@ -32,6 +32,15 @@ def interactive_trigger():
     payload = json.loads(request.form["payload"])
     # do something with the payload
     # ...
+    if payload["type"] == "interactive_message":
+        # code to handle interactive messages
+        # ...
+    elif payload["type"] == "block_actions":
+        # code to handle block actions
+        # ...
+    elif payload["type"] == "dialog_submission":
+        # code to handle dialog submissions
+        # ...
     return Response(status=200)
      
 @app.route('/hello', methods=['POST'])
