@@ -29,6 +29,10 @@ signature_verifier = SignatureVerifier(os.environ["SIGNING_SECRET"])
 @app.route('/slack/interactive-endpoint', methods=['GET','POST'])
 def interactive_trigger():
     print("trigger works")
+    payload = json.loads(request.form["payload"])
+    # do something with the payload
+    # ...
+    return Response(status=200)
      
 @app.route('/hello', methods=['POST'])
 def hello():   
