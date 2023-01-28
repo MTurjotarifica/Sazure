@@ -3,5 +3,4 @@ slack_sdk
 slackeventsapi
 pandas
 numpy
-json
 flask
