@@ -17,6 +17,11 @@ client = WebClient(token=os.environ['SLACK_TOKEN'])
 BOT_ID = client.api_call("auth.test")['user_id']
 signature_verifier = SignatureVerifier(os.environ["SIGNING_SECRET"])
 
+slackBody = {
+    "text": "Test"
+}
+
+
 @app.route('/slack/interactive-endpoint', methods=['GET','POST'])
 def interactive_trigger():
     print("trigger works")
@@ -40,7 +45,9 @@ def hello():
                         )
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
-    return app
+#     name = req.params.get('name', 'World')
+#     return func.HttpResponse(f"Hello, {name}!")
+    res.send(slackBody)
 
 # import slack
 # from slack_sdk import WebClient
