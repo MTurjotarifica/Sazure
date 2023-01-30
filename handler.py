@@ -49,6 +49,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 #     return func.HttpResponse('okk', 200)
     return func.HttpResponse(json.dumps(slackBody), 200)
 
+if __name__ == '__main__':
+    app.run()
 # import slack
 # from slack_sdk import WebClient
 # from slack_sdk.errors import SlackApiError
