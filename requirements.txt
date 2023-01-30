@@ -1,4 +1,4 @@
-﻿slack
+slack
 slack_sdk
 slackeventsapi
 pandas
