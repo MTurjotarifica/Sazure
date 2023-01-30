@@ -48,7 +48,7 @@ def hello():
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     data = {"text": "Test"}
-    response = requests.post("https://sazurehttp.azurewebsites.net/api/sazurehttp", json=data)
+    response = requests.post("https://sazurehttp.azurewebsites.net/api/Httpazure?code=eIaCYAAhcrtYCajG0pxJjSkT_P9sWRkyb2WDwWsvsI5PAzFuouXIVw==", json=data)
     return func.HttpResponse(json.dumps(response.json()), 200)
 
 if __name__ == '__main__':
