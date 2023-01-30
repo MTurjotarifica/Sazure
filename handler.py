@@ -46,9 +46,10 @@ def hello():
     return Response(status=200)
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
-#     name = req.params.get('name', 'World')
-#     return func.HttpResponse('okk', 200)
-    return func.HttpResponse(json.dumps(slackBody), 200)
+    if req.method == "GET":
+        return func.HttpResponse(json.dumps(slackBody), 200)
+    elif req.method == "POST":
+        return hello()
 
 if __name__ == '__main__':
     app.run()
