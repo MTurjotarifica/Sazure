@@ -47,7 +47,7 @@ def hello():
 def main(req: func.HttpRequest) -> func.HttpResponse:
 #     name = req.params.get('name', 'World')
 #     return func.HttpResponse('okk', 200)
-    res.send(slackBody)
+    return func.HttpResponse(json.dumps(slackBody), 200)
 
 # import slack
 # from slack_sdk import WebClient
