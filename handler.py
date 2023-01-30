@@ -43,6 +43,7 @@ def hello():
     client.chat_postMessage(channel='#random', 
                             text="hello world  ",
                         )
+    return Response(status=200)
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
 #     name = req.params.get('name', 'World')
