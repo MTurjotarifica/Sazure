@@ -46,10 +46,10 @@ def hello():
                         )
     return Response(status=200)
 
-def main(req: func.HttpRequest) -> func.HttpResponse:
-    data = {"text": "Test"}
-    response = requests.post("https://makinazure.azurewebsites.net/api/makin?code=nCcniIWN7zHY-f4c17VonoQaXMguPPKBy8P2BdFJkrbvAzFubIp7sg==", json=data)
-    return func.HttpResponse(json.dumps(response.json()), 200)
+# def main(req: func.HttpRequest) -> func.HttpResponse:
+#     data = {"text": "Test"}
+#     response = requests.post("https://makinazure.azurewebsites.net/api/makin?code=nCcniIWN7zHY-f4c17VonoQaXMguPPKBy8P2BdFJkrbvAzFubIp7sg==", json=data)
+#     return func.HttpResponse(json.dumps(response.json()), 200)
 
 if __name__ == '__main__':
     app.run()
