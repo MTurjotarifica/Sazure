@@ -2,6 +2,7 @@ import logging
 import os
 import json
 import urllib
+import requests
 
 import azure.functions as func
 from flask import Flask, request, Response
@@ -46,10 +47,9 @@ def hello():
     return Response(status=200)
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
-    if req.method == "GET":
-        return func.HttpResponse(json.dumps(slackBody), 200)
-    elif req.method == "POST":
-        return hello()
+    data = {"text": "Test"}
+    response = requests.post("https://sazurehttp.azurewebsites.net/api/sazurehttp", json=data)
+    return func.HttpResponse(json.dumps(response.json()), 200)
 
 if __name__ == '__main__':
     app.run()
