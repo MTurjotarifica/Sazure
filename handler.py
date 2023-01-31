@@ -1,58 +1,84 @@
 import logging
-import os
 import json
-import urllib
-import requests
-
 import azure.functions as func
-from flask import Flask, request, Response
-from slack_sdk import WebClient
-from slackeventsapi import SlackEventAdapter
-from slack_sdk.signature import SignatureVerifier
+from flask import Flask, request
 
 app = Flask(__name__)
-slack_event_adapter = SlackEventAdapter(
-    os.environ['SIGNING_SECRET'], '/slack/events', app)
-
-client = WebClient(token=os.environ['SLACK_TOKEN'])
-BOT_ID = client.api_call("auth.test")['user_id']
-signature_verifier = SignatureVerifier(os.environ["SIGNING_SECRET"])
-
-slackBody = {
-    "text": "Test"
-}
-
-
-@app.route('/slack/interactive-endpoint', methods=['GET','POST'])
-def interactive_trigger():
-    print("trigger works")
-    payload = json.loads(request.form["payload"])
-    if payload["type"] == "interactive_message":
-        # code to handle interactive messages
-        # ...
-    elif payload["type"] == "block_actions":
-        # code to handle block actions
-        # ...
-    elif payload["type"] == "dialog_submission":
-        # code to handle dialog submissions
-        # ...
-    return Response(status=200)
 
 @app.route('/hello', methods=['POST'])
-def hello():   
-    print("hello works")
-    client.chat_postMessage(channel='#random', 
-                            text="hello world  ",
-                        )
-    return Response(status=200)
+def hello():
+    # Your code to handle the request
+    # ...
+    return "Hello World", 200
+
+@func.HttpTrigger
+def main(req: func.HttpRequest) -> func.HttpResponse:
+    request_body = req.get_json()
+    # Your code to handle the request
+    # ...
+    return func.HttpResponse(json.dumps({"message": "Hello World"}), 200)
+
+
+# import logging
+# import os
+# import json
+# import urllib
+# import requests
+
+# import azure.functions as func
+# from flask import Flask, request, Response
+# from slack_sdk import WebClient
+# from slackeventsapi import SlackEventAdapter
+# from slack_sdk.signature import SignatureVerifier
+
+# app = Flask(__name__)
+# slack_event_adapter = SlackEventAdapter(
+#     os.environ['SIGNING_SECRET'], '/slack/events', app)
+
+# client = WebClient(token=os.environ['SLACK_TOKEN'])
+# BOT_ID = client.api_call("auth.test")['user_id']
+# signature_verifier = SignatureVerifier(os.environ["SIGNING_SECRET"])
+
+# slackBody = {
+#     "text": "Test"
+# }
+
+
+# @app.route('/slack/interactive-endpoint', methods=['GET','POST'])
+# def interactive_trigger():
+#     print("trigger works")
+#     payload = json.loads(request.form["payload"])
+#     if payload["type"] == "interactive_message":
+#         # code to handle interactive messages
+#         # ...
+#     elif payload["type"] == "block_actions":
+#         # code to handle block actions
+#         # ...
+#     elif payload["type"] == "dialog_submission":
+#         # code to handle dialog submissions
+#         # ...
+#     return Response(status=200)
+
+# @app.route('/hello', methods=['POST'])
+# def hello():   
+#     print("hello works")
+#     client.chat_postMessage(channel='#random', 
+#                             text="hello world  ",
+#                         )
+#     return Response(status=200)
 
 # def main(req: func.HttpRequest) -> func.HttpResponse:
 #     data = {"text": "Test"}
 #     response = requests.post("https://makinazure.azurewebsites.net/api/makin?code=nCcniIWN7zHY-f4c17VonoQaXMguPPKBy8P2BdFJkrbvAzFubIp7sg==", json=data)
 #     return func.HttpResponse(json.dumps(response.json()), 200)
 
-if __name__ == '__main__':
-    app.run()
+# if __name__ == '__main__':
+#     app.run()
+    
+    
+    
+    
+    
 # import slack
 # from slack_sdk import WebClient
 # from slack_sdk.errors import SlackApiError
