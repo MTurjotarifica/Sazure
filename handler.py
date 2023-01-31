@@ -3,6 +3,14 @@ import json
 import azure.functions as func
 from flask import Flask, request
 
+import requests
+
+response = requests.get("https://sazurebotapp.azurewebsites.net/hello")
+if response.status_code == 200:
+    print("The endpoint is accessible")
+else:
+    print("The endpoint is not accessible")
+
 app = Flask(__name__)
 
 @app.route('/hello', methods=['POST'])
