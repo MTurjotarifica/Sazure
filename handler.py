@@ -35,7 +35,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         }
         return func.HttpResponse(json.dumps(response), mimetype="application/json")
 
-    return func.HttpResponse("Unknown command", status_code=400)
+    return func.HttpResponse("Unknown command", status_code=200)
 
 
 
